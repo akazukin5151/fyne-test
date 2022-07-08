@@ -1,0 +1,14 @@
+name: Build
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - run: go build .
+      - run: go install fyne.io/fyne/v2/cmd/fyne@latest
+      - run: fyne package -os darwin -icon Icon-192.png
