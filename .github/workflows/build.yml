@@ -1,6 +1,7 @@
 name: Build
 on:
-  workflow_dispatch
+  push:
+    branches: [main]
 
 jobs:
   build:
@@ -11,8 +12,12 @@ jobs:
 
       - run: go build .
       - run: go install fyne.io/fyne/v2/cmd/fyne@latest
-      - run: go version
-      - run: echo $PATH
-      - run: echo $GOBIN
-      - run: ls -R $GOBIN
-      - run: fyne package -os darwin -icon Icon-192.png
+      - run: ls -R ~/go
+      - run: ~/go/bin/fyne package -os darwin -icon Icon-192.png
+
+      - run: ls
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: test.app
