@@ -11,4 +11,8 @@ jobs:
 
       - run: go build .
       - run: go install fyne.io/fyne/v2/cmd/fyne@latest
+      - run: go version
+      - run: echo $PATH
+      - run: echo $GOBIN
+      - run: ls -R $GOBIN
       - run: fyne package -os darwin -icon Icon-192.png
