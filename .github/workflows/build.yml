@@ -10,11 +10,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - run: cd src
       - run: go build .
+        working-directory: src
       - run: go install fyne.io/fyne/v2/cmd/fyne@latest
       - run: ls -R ~/go
       - run: ~/go/bin/fyne package -os darwin -icon Icon-192.png
+        working-directory: src
 
       - run: ls
       - name: Upload build
