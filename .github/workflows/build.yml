@@ -10,6 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - run: cd src
       - run: go build .
       - run: go install fyne.io/fyne/v2/cmd/fyne@latest
       - run: ls -R ~/go
